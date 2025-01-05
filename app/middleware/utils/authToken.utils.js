@@ -9,17 +9,10 @@ export const authenticateToken = (req, res, next) => {
         return res.status(401).json({ error: 'Access denied, no token provided' });
     }
 
-    // Use the first API key from the in-memory store as the JWT secret
-    const validApiKeys = Array.from(apiKeysStore); // Convert Set to an array
-    const secretKey = validApiKeys[0]; // Replace with DB lookup logic if required
-
-    if (!secretKey) {
-        return res.status(500).json({ error: 'No API secret key configured' });
-    }
-
     try {
         // Verify the token with the retrieved secret key
-        const decoded = jwt.verify(token, secretKey);
+        const decoded = jwt.verify(token, "bd0d6fc93d5eef504c4a0437cd7b97ed23d0043fbe2a3e6c303cef26fbbe49ac");
+        console.log(decoded);
         req.user = decoded; // Attach decoded token to request object
         next(); // Proceed to the next middleware or route
     } catch (err) {
