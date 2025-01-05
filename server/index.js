@@ -15,7 +15,7 @@ app.use(cors({
     credentials: true,
     origin: 'https://invent-f.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key']
 })); 
 
 const mongoURI = process.env.MONGO_URI;
